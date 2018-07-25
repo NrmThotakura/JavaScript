@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <title>CRUD Operations on a Table</Table></title>
+        <style>            
+            .container{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 50px}
+            .tab-2 input{display: block; margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+            
+        </style>
+        <script>
+            var rIndex,
+table = document.getElementById("table");
+
+// check the empty input
+function checkEmptyInput()
+{
+var isEmpty = false,
+    fname = document.getElementById("fname").value,
+    lname = document.getElementById("lname").value,
+    age = document.getElementById("age").value;
+
+if(fname === ""){
+    alert("First Name Connot Be Empty");
+    isEmpty = true;
+}
+else if(lname === ""){
+    alert("Last Name Connot Be Empty");
+    isEmpty = true;
+}
+else if(age === "") {
+    alert("Age Connot Be Empty");
+    isEmpty = true;
+}
+
+else if(age<1 || age > 100) {
+    alert("Please enter valid age");
+    isEmpty = true;
+}
+
+return isEmpty;
+}
+
+function addHtmlTableRow()
+{
+if(!checkEmptyInput()){
+    let table = document.getElementById("table");
+    let newRow = table.insertRow(table.rows.length);
+    cell1 = newRow.insertCell(0),
+    cell2 = newRow.insertCell(1),
+    cell3 = newRow.insertCell(2),
+    fname = document.getElementById("fname").value,
+    lname = document.getElementById("lname").value,
+    age = document.getElementById("age").value;
+
+    cell1.innerHTML = fname;
+    cell2.innerHTML = lname;
+    cell3.innerHTML = age;
+    selectedRowToInput();
+    document.getElementById("fname").value = ""
+    document.getElementById("lname").value = ""
+    document.getElementById("age").value = ""
+}
+}
+function selectedRowToInput()
+{
+for(var i = 1; i < document.getElementById("table").rows.length; i++)
+{
+    document.getElementById('table').rows[i].onclick = function()
+    {
+        rIndex = this.rowIndex
+      document.getElementById("fname").value = this.cells[0].innerHTML;
+      document.getElementById("lname").value = this.cells[1].innerHTML;
+      document.getElementById("age").value = this.cells[2].innerHTML;
+    };
+}
+}
+selectedRowToInput();
+
+function editHtmlTbleSelectedRow(){
+    var fname = document.getElementById("fname").value
+    lname = document.getElementById("lname").value
+    age = document.getElementById("age").value
+    if(!checkEmptyInput()){
+        document.getElementById("table").rows[rIndex].cells[0].innerHTML = fname;
+        document.getElementById("table").rows[rIndex].cells[1].innerHTML = lname;
+        document.getElementById("table").rows[rIndex].cells[2].innerHTML = age;
+    }
+    document.getElementById("fname").value = ""
+    document.getElementById("lname").value = ""
+    document.getElementById("age").value = ""
+}
+
+function removeSelectedRow() {
+    if(!checkEmptyInput()){
+        document.getElementById("table").deleteRow(rIndex)
+    }
+    document.getElementById("fname").value = ""
+    document.getElementById("lname").value = ""
+    document.getElementById("age").value = ""
+}
+
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="tab tab-1">
+                <table id="table" border="1">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                    </tr>
+                   <!-- <tr>
+                        <th>Apple</th>
+                        <th>A</th>
+                        <th>10</th>
+                    </tr>!-->
+                </table>
+            </div>
+            <div class="tab tab-2">                
+                First Name : <input type="text" name="fname" id="fname">
+                Last Name :<input type="text" name="lname" id="lname">
+                Age :<input type="number" name="age" id="age">
+                <button onclick="addHtmlTableRow();">Add</button>
+                <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+                <button onclick="removeSelectedRow();">Remove</button>
+            </div>
+        </div>
+    </body>
+</html>
