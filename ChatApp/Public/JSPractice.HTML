@@ -1,0 +1,46 @@
+<!--<html>
+    <head>
+        <title>Java Script</title>
+        <script type="text/javascript">
+            function Test(first,last) {
+               // document.write(name + " is " + age  + " years old");
+                var full;
+                full = first + last;
+                return full;
+            }
+
+            function mainFunction(){
+                var result;
+                result = Test('Nrm', 'T');
+                document.write(result);
+                alert(result);
+            }
+
+        </script>
+    </head>
+    <body>
+       <input type="button" onclick="Test('Nrm', 25)" value="Submit" />
+       <input type="button" onclick="mainFunction()" value="Submit" />
+    </body>
+</html>!-->
+<html>
+<head>
+<title>Javascript Login Form Validation</title>
+<!--<link rel="stylesheet" href="style.css"/>!-->
+<script src= "Login.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="main">
+<h2>Javascript Login Form Validation</h2>
+<form id="form_id" method="post" name="myform">
+<label>User Name :</label><br/>
+<input type="text" name="username" id="username"/><br/>
+<label>Password :</label><br/>
+<input type="password" name="password" id="password"/><br/>
+<input type="button" value="Login" id="submit" onclick="validate()"/><br/>
+</form>
+</div>
+</div>
+</body>
+</html>
